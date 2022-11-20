@@ -99,7 +99,7 @@ Values GenerateRandomValue()
 {
     var values = Enum.GetValues(typeof(Values));
     var random = new Random();
-    return (Values) values.GetValue(random.Next(values.Length));
+    return (Values) (values.GetValue(random.Next(values.Length)) ?? throw new InvalidOperationException());
 }
 
 static bool EndGame()
