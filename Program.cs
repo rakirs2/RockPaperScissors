@@ -1,34 +1,33 @@
-﻿// Ask the computer do you want to play a game?
-
-using System.Globalization;
-
-Console.WriteLine("Do you want to play a game of Rock Paper Scissors");
+﻿Console.WriteLine("Do you want to play a game of Rock Paper Scissors");
 
 char input = Console.ReadKey().KeyChar;;
+Console.WriteLine(input);
 int playerScore = 0;
 int computerScore = 0;
-
-while (Char.ToLower(input, CultureInfo.InvariantCulture) == 'y' )
+bool endGame = false;
+if (input == 'y' && !endGame)
 {
-    input = Console.ReadKey().KeyChar;
+    ReportScore(playerScore, computerScore);
+    
 }
 
-HashSet<char> validKeys = new HashSet<char>()
+Dictionary<char, Values> mappings = new Dictionary<char, Values>()
 {
-    'r', 'p', 's'
+    {'r', Values.Rock},
+    {'p', Values.Paper},
+    {'s', Values.Scissors},
 };
 
+static void ReportScore(int playerA, int computerScore)
+{
+    Console.WriteLine($"player A: {playerA} computer: {computerScore}");
+}
+static Values GetPlayerInput()
+{
+    Console.WriteLine();
+    return Values.Paper;
+}
 
-
-
-
-
-// This exists in python but you do not have to do it this way
 enum Values{
     Rock, Paper, Scissors
 }
-
-
-
-
-
