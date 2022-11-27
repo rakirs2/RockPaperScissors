@@ -9,6 +9,7 @@ var mappings = new Dictionary<char, Values>()
 
 var input = Console.ReadKey().KeyChar;
 
+// These are the scores of player and computer that I'm using throughout the program
 var playerScore = 0;
 var computerScore = 0;
 var endGame = false;
@@ -18,6 +19,7 @@ while (input == 'y' && endGame == false)
     var playerInput = GetPlayerInput(mappings);
     var computerInput = GenerateRandomValue();
     
+    // I use this function to take in the player's input (rps) and the computers input(rps) and update the score in here
     var value = PlayAgainstComputer(playerInput, computerInput, ref playerScore, ref computerScore);
 
     endGame = EndGame();
@@ -42,23 +44,28 @@ static Values GetPlayerInput(Dictionary<char, Values> mappings)
     return mappings[value];
 }
 
+// I added a return value, completely not necessary. I did it more to see what I liked better. 
 int PlayAgainstComputer(Values playerValue, Values computerValue, ref int pScore, ref int cScore)
 {
     Console.WriteLine($"\nPlayer A: {playerValue} computer: {computerValue}");
+    // If tie, do nothing
     if (playerValue == computerValue)
     {
         return 0;
     }
 
+    // these next 3 blocks should look really familiar
     if (playerValue == Values.Paper)
     {
         if (computerValue == Values.Rock)
         {
+            // increment players score by 1
             pScore++;
             return 1;
         }
         else
         {
+            // increment computer's score by one
             cScore++;
             return -1;
         }
